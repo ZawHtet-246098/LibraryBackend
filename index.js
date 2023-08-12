@@ -16,9 +16,9 @@ app.use(cors());
 app.use("/user", userRoute);
 app.use("/", bookRoute);
 
-app.get("/", (req, res) => {
-  res.send("App is running");
-});
+// app.get("/", (req, res) => {
+//   res.send("App is running");
+// });
 
 const CONNECTION_URL =
   "mongodb+srv://ZawHtet:zawhtet150mongodb@cluster0.fpdqu.mongodb.net/Books?retryWrites=true&w=majority";
