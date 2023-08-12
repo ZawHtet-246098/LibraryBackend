@@ -7,31 +7,27 @@ import userRoute from "./routes/user.js";
 import bookRoute from "./routes/books.js";
 
 const app = express();
-// hello
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(cors());
 
+app.use("/user", userRoute);
+app.use("/", bookRoute);
+
 app.get("/", (req, res) => {
-  res.send(`App is runnging`);
+  res.send("App is running");
 });
 
-
-app.use("/user", userRoute);
-app.use("/books", bookRoute);
-
-
-
-const CONNNECTION_URL =
+const CONNECTION_URL =
   "mongodb+srv://ZawHtet:zawhtet150mongodb@cluster0.fpdqu.mongodb.net/Books?retryWrites=true&w=majority";
 
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(CONNNECTION_URL)
+  .connect(CONNECTION_URL)
   .then(() =>
-    app.listen(PORT, () => console.log(`Server is Running on port ${PORT}`))
+    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
   )
-  .catch((error) => console.log(`${error} did not connect`));
+  .catch((error) => console.log(`${error} did not connct`));
